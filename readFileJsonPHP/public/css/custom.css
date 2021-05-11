@@ -3,6 +3,12 @@
   height: 50px;
 }
 
-.align-center {
+.center {
   justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+a.disabled{
+    pointer-events: none;
 }
