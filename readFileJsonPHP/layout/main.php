@@ -61,7 +61,7 @@ $startPage = ($curentPage - 1) * 5 + 1;
                     <span class="sr-only">Previous</span>
                 </a>
             </li>
-        <?php elseif ($curentPage > 1 && $curentPage < 4) : ?>
+        <?php elseif ($curentPage > 1 && $curentPage <= 4) : ?>
             <li class="page-item">
                 <a class="page-link bg-light fix-50 m-1 center .bg-info" href="<?= $_SERVER['PHP_SELF'] . '?page=1' ?>" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
