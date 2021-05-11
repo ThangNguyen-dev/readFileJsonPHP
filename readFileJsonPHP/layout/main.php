@@ -6,7 +6,7 @@ $arrayData = array(json_decode($jsonData), true);
 
 /**
  *  get number page from url 
- * if not isset is page = 1
+ * if not isset is currentPage = 1 to set current page
  * */
 if (isset($_GET['page']) && (int)$_GET['page']) {
     $curentPage = $_GET['page'];
@@ -49,38 +49,40 @@ $startPage = ($curentPage - 1) * 5;
 </table>
 
 <nav aria-label='Xem truoc'>
-    <ul class='pagination'>
-        <a class="page-link fix-50 center" href="#" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <li class='page-item <?= $activePage ?>'>
-            <a class='rounded-circle center m-1 fix-50 page-link' href='<?= $_SERVER['PHP_SELF'] . '?page=' . $curentPage + 1 ?>'>
-                <?= $curentPage + 1 ?>
-            </a>
-        </li>
-        <li class='page-item <?= $activePage ?>'>
-            <a class='rounded-circle center m-1 fix-50 page-link' href='<?= $_SERVER['PHP_SELF'] . '?page=' . $curentPage + 1 ?>'>
-                <?= $curentPage + 1 ?>
-            </a>
-        </li>
-        <li class='page-item <?= $activePage ?>'>
-            <a class='rounded-circle center m-1 fix-50 page-link' href='<?= $_SERVER['PHP_SELF'] . '?page=' . $curentPage + 1 ?>'>
-                <?= $curentPage + 1 ?>
-            </a>
-        </li>
-        <li class='page-item <?= $activePage ?>'>
-            <a class='rounded-circle center m-1 fix-50 page-link' href='<?= $_SERVER['PHP_SELF'] . '?page=' . $curentPage + 1 ?>'>
-                <?= $curentPage + 1 ?>
-            </a>
-        </li>
-        <li class='page-item <?= $activePage ?>'>
-            <a class='rounded-circle center m-1 fix-50 page-link' href='<?= $_SERVER['PHP_SELF'] . '?page=' . $curentPage + 1 ?>'>
-                <?= $curentPage + 1 ?>
-            </a>
-        </li>
+    <ul class='pagination align-center'>
         <li class="page-item">
-            <a class="page-link fix-50 center" href="#" aria-label="Next">
+            <a class="page-link bg-light fix-50 m-1 center .bg-info" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+            </a>
+        </li>
+        <li class='page-item <?= $activePage ?>'>
+            <a class='rounded-circle center m-1 fix-50 page-link' href='<?= $_SERVER['PHP_SELF'] . '?page=' . $curentPage + 1 ?>'>
+                <?= $curentPage + 1 ?>
+            </a>
+        </li>
+        <li class='page-item <?= $activePage ?>'>
+            <a class='rounded-circle center m-1 fix-50 page-link' href='<?= $_SERVER['PHP_SELF'] . '?page=' . $curentPage + 1 ?>'>
+                <?= $curentPage + 1 ?>
+            </a>
+        </li>
+        <li class='page-item <?= $activePage ?>'>
+            <a class='rounded-circle center m-1 fix-50 page-link' href='<?= $_SERVER['PHP_SELF'] . '?page=' . $curentPage + 1 ?>'>
+                <?= $curentPage + 1 ?>
+            </a>
+        </li>
+        <li class='page-item <?= $activePage ?>'>
+            <a class='rounded-circle center m-1 fix-50 page-link' href='<?= $_SERVER['PHP_SELF'] . '?page=' . $curentPage + 1 ?>'>
+                <?= $curentPage + 1 ?>
+            </a>
+        </li>
+        <li class='page-item <?= $activePage ?>'>
+            <a class='rounded-circle center m-1 fix-50 page-link' href='<?= $_SERVER['PHP_SELF'] . '?page=' . $curentPage + 1 ?>'>
+                <?= $curentPage + 1 ?>
+            </a>
+        </li>
+        <li class="page-item ">
+            <a class="page-link fix-50 bg-light center m-1" href="#" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
                 <span class="sr-only">Next</span>
             </a>
