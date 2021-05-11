@@ -3,34 +3,59 @@
 $jsonData = file_get_contents(__DIR__ . '\..\json\data.json');
 
 $arrayData = array(json_decode($jsonData), true);
-foreach ($arrayData[0] as $key => $value) {
-    // var_dump($value->id);
-    echo 'Name: ' . $value->name . '<br/>';
-    echo 'Gender: ' . $value->gender . '<br/>';
-    echo 'Age: ' . $value->age . '<br/>';
-    echo 'Company: ' . $value->company . '<br/>';
-    echo 'Email: ' . $value->email . '<br/>';
-    echo 'Phone: ' . $value->phone . '<br/>';
-    echo 'Address: ' . $value->address . '<br/>';
-    echo '<hr/>';
-    if ($key == 5) {
-        exit;
-    }
+
+/**
+ *  get number page from url 
+ * if not isset is page = 1
+ * */
+if (isset($_GET['page']) && (int)$_GET['page']) {
+    $curentPage = $_GET['page'];
+} else {
+    $curentPage = 1;
 }
+$activePage = 'active';
+$endPage = ($curentPage - 1) * 5  + 5;
+$startPage = ($curentPage - 1) * 5;
+?>
 
-// var_dump($_SERVER['PHP_SELF']);
-// var_dump($_GET['page']);
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">STT</th>
+            <th scope="col">Name</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Company</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Address</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php for ($startPage; $startPage <= $endPage; $startPage++) : ?>
+            <?php if (!isset($arrayData[0][$startPage])) {
+                exit;
+            } ?>
+            <tr>
+                <th scope="row"><?= $startPage ?></th>
+                <td><?= $arrayData[0][$startPage]->name ?></td>
+                <td><?= $arrayData[0][$startPage]->gender ?></td>
+                <td><?= $arrayData[0][$startPage]->company ?></td>
+                <td><?= $arrayData[0][$startPage]->email ?></td>
+                <td><?= $arrayData[0][$startPage]->phone ?></td>
+                <td><?= $arrayData[0][$startPage]->address ?></td>
+            </tr>
 
-$activELement = 'active';
+        <?php endfor; ?>
 
-$open_html = "<nav aria-label='Xem truoc'>
-                <ul class='pagination'>";
-$end_html = "   </ul>
-            </nav>";
-$items_html = "<li class='page-item {$activELement}'>
-                    <a class='rounded-circle fix-w-38 fix-h-38 text-center page-link' 
-                        href='{$_SERVER['PHP_SELF']}?page={}' 
-                        >1
-                    </a>
-                </li>";
-echo $open_html . $items_html . $end_html;
+    </tbody>
+</table>
+
+<nav aria-label='Xem truoc'>
+    <ul class='pagination'>
+        <li class='page-item <?= $activePage ?>'>
+            <a class='rounded-circle fix-38 align-middle text-center page-link' href='<?= $_SERVER['PHP_SELF'] . '?page=' . $curentPage + 1 ?>'>
+                <?= $curentPage + 1 ?>
+            </a>
+        </li>
+    </ul>
+</nav>
