@@ -44,17 +44,45 @@ $startPage = ($curentPage - 1) * 5;
                 <td><?= $arrayData[0][$startPage]->phone ?></td>
                 <td><?= $arrayData[0][$startPage]->address ?></td>
             </tr>
-
         <?php endfor; ?>
-
     </tbody>
 </table>
 
 <nav aria-label='Xem truoc'>
     <ul class='pagination'>
+        <a class="page-link fix-50 center" href="#" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+            <span class="sr-only">Previous</span>
+        </a>
         <li class='page-item <?= $activePage ?>'>
-            <a class='rounded-circle fix-38 align-middle text-center page-link' href='<?= $_SERVER['PHP_SELF'] . '?page=' . $curentPage + 1 ?>'>
+            <a class='rounded-circle center m-1 fix-50 page-link' href='<?= $_SERVER['PHP_SELF'] . '?page=' . $curentPage + 1 ?>'>
                 <?= $curentPage + 1 ?>
+            </a>
+        </li>
+        <li class='page-item <?= $activePage ?>'>
+            <a class='rounded-circle center m-1 fix-50 page-link' href='<?= $_SERVER['PHP_SELF'] . '?page=' . $curentPage + 1 ?>'>
+                <?= $curentPage + 1 ?>
+            </a>
+        </li>
+        <li class='page-item <?= $activePage ?>'>
+            <a class='rounded-circle center m-1 fix-50 page-link' href='<?= $_SERVER['PHP_SELF'] . '?page=' . $curentPage + 1 ?>'>
+                <?= $curentPage + 1 ?>
+            </a>
+        </li>
+        <li class='page-item <?= $activePage ?>'>
+            <a class='rounded-circle center m-1 fix-50 page-link' href='<?= $_SERVER['PHP_SELF'] . '?page=' . $curentPage + 1 ?>'>
+                <?= $curentPage + 1 ?>
+            </a>
+        </li>
+        <li class='page-item <?= $activePage ?>'>
+            <a class='rounded-circle center m-1 fix-50 page-link' href='<?= $_SERVER['PHP_SELF'] . '?page=' . $curentPage + 1 ?>'>
+                <?= $curentPage + 1 ?>
+            </a>
+        </li>
+        <li class="page-item">
+            <a class="page-link fix-50 center" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
             </a>
         </li>
     </ul>
