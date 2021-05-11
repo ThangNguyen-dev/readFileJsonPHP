@@ -12,7 +12,7 @@ if (count($arrayData[0]) % 5 != 0) {
  *  get number page from url 
  * if not isset is currentPage = 1 to set current page
  * */
-if (isset($_GET['page']) && (int)$_GET['page']) {
+if (isset($_GET['page']) && (int)$_GET['page'] && $_GET['page'] < $maxPage) {
     $curentPage = $_GET['page'];
 } else {
     $curentPage = 1;
