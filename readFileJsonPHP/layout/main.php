@@ -1,6 +1,7 @@
 <?php
-var_dump($_SERVER['PHP_SELF']);
-var_dump($_GET['page']);
+require_once '../modules/paginator.php';
+// var_dump($_SERVER['PHP_SELF']);
+// var_dump($_GET['page']);
 
 $activELement = 'active';
 
