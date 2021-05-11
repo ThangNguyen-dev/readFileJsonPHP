@@ -32,29 +32,39 @@ $startPage = ($curentPage - 1) * 5 + 1;
     </thead>
     <tbody>
         <?php for ($startPage; $startPage <= $endPage; $startPage++) : ?>
-            <?php if (!isset($arrayData[0][$startPage])) {
-                exit;
-            } ?>
-            <tr>
-                <th scope="row"><?= $startPage ?></th>
-                <td><?= $arrayData[0][$startPage]->name ?></td>
-                <td><?= $arrayData[0][$startPage]->gender ?></td>
-                <td><?= $arrayData[0][$startPage]->company ?></td>
-                <td><?= $arrayData[0][$startPage]->email ?></td>
-                <td><?= $arrayData[0][$startPage]->phone ?></td>
-                <td><?= $arrayData[0][$startPage]->address ?></td>
-            </tr>
+            <?php if (isset($arrayData[0][$startPage])) : ?>
+                <tr>
+                    <th scope="row"><?= $startPage ?></th>
+                    <td><?= $arrayData[0][$startPage]->name ?></td>
+                    <td><?= $arrayData[0][$startPage]->gender ?></td>
+                    <td><?= $arrayData[0][$startPage]->company ?></td>
+                    <td><?= $arrayData[0][$startPage]->email ?></td>
+                    <td><?= $arrayData[0][$startPage]->phone ?></td>
+                    <td><?= $arrayData[0][$startPage]->address ?></td>
+                </tr>
+            <?php endif; ?>
         <?php endfor; ?>
     </tbody>
 </table>
-
 <nav aria-label='Xem truoc' class="center">
     <ul class='pagination'>
         <li class="page-item">
-            <a class="page-link bg-light fix-50 m-1 center .bg-info" href="<?= $_SERVER['PHP_SELF'] . '?page=' . $curentPage - 4 ?>" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-                <span class="sr-only">Previous</span>
-            </a>
+            <?php if ($curentPage > 1) : ?>
+                <a class="page-link bg-light fix-50 m-1 center .bg-info" href="<?= $_SERVER['PHP_SELF'] . '?page=' . $curentPage - 4 ?>" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            <?php elseif ($curentPage > 1 && $curentPage < 4) : ?>
+                <a class="page-link bg-light fix-50 m-1 center .bg-info" href="<?= $_SERVER['PHP_SELF'] . '?page=1' ?>" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            <?php else : ?>
+                <a class="page-link bg-light fix-50 m-1 center bg-info disabled" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            <?php endif; ?>
         </li>
         <li class='page-item'>
             <a class='rounded-circle center m-1 fix-50 page-link' href='<?= $_SERVER['PHP_SELF'] . '?page=' . $curentPage - 2 ?>'>
@@ -81,11 +91,21 @@ $startPage = ($curentPage - 1) * 5 + 1;
                 <?= $curentPage + 2 ?>
             </a>
         </li>
-        <li class="page-item">
-            <a class="page-link fix-50 bg-light center m-1" href="<?= $_SERVER['PHP_SELF'] . '?page=' . $curentPage + 4 ?>" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-                <span class="sr-only">Next</span>
+        <?php if ($curentPage > count($arrayData) + 4) : ?>
+            <a class="page-link bg-light fix-50 m-1 center .bg-info" href="<?= $_SERVER['PHP_SELF'] . '?page=' . $curentPage + 4 ?>" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
             </a>
-        </li>
+        <?php elseif ($curentPage > count($arrayData) + 4 && $curentPage > count($arrayData) + 1) : ?>
+            <a class="page-link bg-light fix-50 m-1 center .bg-info" href="<?= $_SERVER['PHP_SELF'] . '?page=' . count($arrayData) ?>' ?>" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+            </a>
+        <?php else : ?>
+            <a class="page-link bg-light fix-50 m-1 center bg-info disabled" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+            </a>
+        <?php endif; ?>
     </ul>
 </nav>
