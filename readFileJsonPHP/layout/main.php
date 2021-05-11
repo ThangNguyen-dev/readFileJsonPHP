@@ -4,6 +4,10 @@ $jsonData = file_get_contents(__DIR__ . '\..\json\data.json');
 
 $arrayData = array(json_decode($jsonData), true);
 
+$maxPage = floor(count($arrayData[0]) / 5);
+if (count($arrayData[0]) % 5 != 0) {
+    $maxPage++;
+}
 /**
  *  get number page from url 
  * if not isset is currentPage = 1 to set current page
@@ -48,64 +52,98 @@ $startPage = ($curentPage - 1) * 5 + 1;
 </table>
 <nav aria-label='Xem truoc' class="center">
     <ul class='pagination'>
-        <li class="page-item">
-            <?php if ($curentPage > 1) : ?>
+
+        <!-- before page -->
+        <?php if ($curentPage > 4) : ?>
+            <li class="page-item">
                 <a class="page-link bg-light fix-50 m-1 center .bg-info" href="<?= $_SERVER['PHP_SELF'] . '?page=' . $curentPage - 4 ?>" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                     <span class="sr-only">Previous</span>
                 </a>
-            <?php elseif ($curentPage > 1 && $curentPage < 4) : ?>
+            </li>
+        <?php elseif ($curentPage > 1 && $curentPage < 4) : ?>
+            <li class="page-item">
                 <a class="page-link bg-light fix-50 m-1 center .bg-info" href="<?= $_SERVER['PHP_SELF'] . '?page=1' ?>" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                     <span class="sr-only">Previous</span>
                 </a>
-            <?php else : ?>
+            </li>
+        <?php else : ?>
+            <li class="page-item">
                 <a class="page-link bg-light fix-50 m-1 center bg-info disabled" href="#" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                     <span class="sr-only">Previous</span>
                 </a>
-            <?php endif; ?>
-        </li>
-        <li class='page-item'>
-            <a class='rounded-circle center m-1 fix-50 page-link' href='<?= $_SERVER['PHP_SELF'] . '?page=' . $curentPage - 2 ?>'>
-                <?= $curentPage - 2 ?>
-            </a>
-        </li>
-        <li class='page-item'>
-            <a class='rounded-circle center m-1 fix-50 page-link' href='<?= $_SERVER['PHP_SELF'] . '?page=' . $curentPage - 1 ?>'>
-                <?= $curentPage - 1 ?>
-            </a>
-        </li>
+            </li>
+        <?php endif; ?>
+
+        <?php if ($curentPage - 2 > 0) : ?>
+            <li class='page-item'>
+                <a class='rounded-circle center m-1 fix-50 page-link' href='<?= $_SERVER['PHP_SELF'] . '?page=' . $curentPage - 2 ?>'>
+                    <?= $curentPage - 2 ?>
+                </a>
+            </li>
+        <?php endif; ?>
+
+        <!-- current page -->
+        <?php if ($curentPage - 1 > 0) : ?>
+            <li class='page-item'>
+                <a class='rounded-circle center m-1 fix-50 page-link' href='<?= $_SERVER['PHP_SELF'] . '?page=' . $curentPage - 1 ?>'>
+                    <?= $curentPage - 1 ?>
+                </a>
+            </li>
+        <?php endif; ?>
+
         <li class='page-item <?= $activePage ?>'>
             <a class='rounded-circle disabled center m-1 fix-50 page-link' href='<?= $_SERVER['PHP_SELF'] . '?page=' . $curentPage  ?>'>
                 <?= $curentPage  ?>
             </a>
         </li>
-        <li class='page-item'>
-            <a class='rounded-circle center m-1 fix-50 page-link' href='<?= $_SERVER['PHP_SELF'] . '?page=' . $curentPage + 1 ?>'>
-                <?= $curentPage + 1 ?>
-            </a>
-        </li>
-        <li class='page-item'>
-            <a class='rounded-circle center m-1 fix-50 page-link' href='<?= $_SERVER['PHP_SELF'] . '?page=' . $curentPage + 2 ?>'>
-                <?= $curentPage + 2 ?>
-            </a>
-        </li>
-        <?php if ($curentPage > count($arrayData) + 4) : ?>
-            <a class="page-link bg-light fix-50 m-1 center .bg-info" href="<?= $_SERVER['PHP_SELF'] . '?page=' . $curentPage + 4 ?>" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-                <span class="sr-only">Previous</span>
-            </a>
-        <?php elseif ($curentPage > count($arrayData) + 4 && $curentPage > count($arrayData) + 1) : ?>
-            <a class="page-link bg-light fix-50 m-1 center .bg-info" href="<?= $_SERVER['PHP_SELF'] . '?page=' . count($arrayData) ?>' ?>" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-                <span class="sr-only">Previous</span>
-            </a>
-        <?php else : ?>
-            <a class="page-link bg-light fix-50 m-1 center bg-info disabled" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-                <span class="sr-only">Previous</span>
-            </a>
+
+        <?php if ($curentPage + 1 <= $maxPage) : ?>
+            <li class='page-item'>
+                <a class='rounded-circle center m-1 fix-50 page-link' href='<?= $_SERVER['PHP_SELF'] . '?page=' . $curentPage + 1 ?>'>
+                    <?= $curentPage + 1 ?>
+                </a>
+            </li>
         <?php endif; ?>
+
+
+
+        <?php if ($curentPage + 2 <= $maxPage) : ?>
+            <li class='page-item'>
+                <a class='rounded-circle center m-1 fix-50 page-link' href='<?= $_SERVER['PHP_SELF'] . '?page=' . $curentPage + 2 ?>'>
+                    <?= $curentPage + 2 ?>
+                </a>
+            </li>
+        <?php endif; ?>
+
+
+
+        <!-- end page -->
+        <?php if ($curentPage + 4 < $maxPage) : ?>
+            <li class='page-item'>
+                <a class="page-link bg-light fix-50 m-1 center .bg-info" href="<?= $_SERVER['PHP_SELF'] . '?page=' . $curentPage + 4 ?>" aria-label="Previous">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+        <?php elseif ($curentPage + 4 >= $maxPage && $curentPage + 1  <= $maxPage) : ?>
+            <li class='page-item'>
+                <a class="page-link bg-light fix-50 m-1 center .bg-info" href="<?= $_SERVER['PHP_SELF'] . '?page=' . (int)$maxPage ?>" aria-label="Previous">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+        <?php else : ?>
+            <li class='page-item'>
+                <a class="page-link bg-light fix-50 m-1 center bg-info disabled" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+        <?php endif; ?>
+
+
     </ul>
 </nav>
