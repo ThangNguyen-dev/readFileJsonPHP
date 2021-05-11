@@ -6,3 +6,5 @@
 <link rel="stylesheet" href="public/css/bootstrap.css">
 <link rel="stylesheet" href="public/css/bootstrap-reboot.min.css">
 <link rel="stylesheet" href="public/css/bootstrap.css">
+
+<link rel="stylesheet" href="public/css/custom.css">
