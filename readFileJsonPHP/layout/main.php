@@ -12,7 +12,7 @@ if (count($arrayData[0]) % 5 != 0) {
  *  get number page from url 
  * if not isset is currentPage = 1 to set current page
  * */
-if (isset($_GET['page']) && (int)$_GET['page'] && $_GET['page'] < $maxPage) {
+if (isset($_GET['page']) && (int)$_GET['page'] && $_GET['page'] <= $maxPage) {
     $curentPage = $_GET['page'];
 } else {
     $curentPage = 1;
@@ -130,7 +130,7 @@ $startPage = ($curentPage - 1) * 5 + 1;
             </li>
         <?php elseif ($curentPage + 4 >= $maxPage && $curentPage + 1  <= $maxPage) : ?>
             <li class='page-item'>
-                <a class="page-link bg-light fix-50 m-1 center .bg-info" href="<?= $_SERVER['PHP_SELF'] . '?page=' . (int)$maxPage ?>" aria-label="Previous">
+                <a class="page-link bg-light fix-50 m-1 center .bg-info" href="<?= $_SERVER['PHP_SELF'] . '?page=' . $maxPage ?>" aria-label="Previous">
                     <span aria-hidden="true">&raquo;</span>
                     <span class="sr-only">Previous</span>
                 </a>
